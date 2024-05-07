@@ -27,6 +27,6 @@ class ReservationSerializer(serializers.ModelSerializer):
         start_date = attrs['start_date']
         end_date = attrs['end_date']
 
-        if Reservation.objects.filter(car=car, start_date_lte=end_date, end_date_gte=start_date).exists():
+        if Reservation.objects.filter(car=car, start_date__lte=end_date, end_date__gte=start_date).exists():
             raise serializers.ValidationError("This car is already reserved for the selected dates.")
         return attrs
